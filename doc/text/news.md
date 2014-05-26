@@ -1,6 +1,6 @@
 # News
 
-## 1.0.1: 2014-05-29
+## 1.0.1: 2014-05-29 (planned)
 
  * Support packing of `WGS84GeoPoint` and `TokyoGeoPoint` values.
 
