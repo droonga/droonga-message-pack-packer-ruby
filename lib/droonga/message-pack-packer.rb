@@ -51,7 +51,7 @@ module Droonga
         @packer.write(TimeFormatter.format(object))
       else
         case object.class.name
-        when "WGS84GeoPoint", "TokyoGeoPoint"
+        when "Groonga::WGS84GeoPoint", "Groonga::TokyoGeoPoint"
           @packer.write(GeoPointFormatter.format(object))
         else
           @packer.write(object)
