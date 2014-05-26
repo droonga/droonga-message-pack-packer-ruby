@@ -16,6 +16,7 @@
 require "msgpack"
 
 require "droonga/message-pack-packer/time-formatter"
+require "droonga/message-pack-packer/geo-point-formatter"
 
 module Droonga
   class MessagePackPacker
@@ -49,7 +50,12 @@ module Droonga
       when Time
         @packer.write(TimeFormatter.format(object))
       else
-        @packer.write(object)
+        case object.class.name
+        when "WGS84GeoPoint", "TokyoGeoPoint"
+          @packer.write(GeoPointFormatter.format(object))
+        else
+          @packer.write(object)
+        end
       end
     end
 
