@@ -40,6 +40,54 @@ class PackerTest < Test::Unit::TestCase
     assert_equal(array, unpack(pack(array)))
   end
 
+  def test_wgs84_geo_point
+    wgs84_geo_point_class = Class.new do
+      class << self
+        def name
+          "Groonga::WGS84GeoPoint"
+        end
+      end
+
+      def initialize(latitude, longitude)
+        @latitude = latitude
+        @longitude = longitude
+      end
+
+      def to_s
+        "<#{@latitude}x#{@longitude}>"
+      end
+    end
+
+    latitude = 35.681382
+    longitude = 139.766084
+    tokyo = wgs84_geo_point_class.new(latitude, longitude)
+    assert_equal("<#{latitude}x#{longitude}>", unpack(pack(tokyo)))
+  end
+
+  def test_tokyo_geo_point
+    tokyo_geo_point_class = Class.new do
+      class << self
+        def name
+          "Groonga::TokyoGeoPoint"
+        end
+      end
+
+      def initialize(latitude, longitude)
+        @latitude = latitude
+        @longitude = longitude
+      end
+
+      def to_s
+        "<#{@latitude}x#{@longitude}>"
+      end
+    end
+
+    latitude = 35.681382
+    longitude = 139.766084
+    tokyo = tokyo_geo_point_class.new(latitude, longitude)
+    assert_equal("<#{latitude}x#{longitude}>", unpack(pack(tokyo)))
+  end
+
   private
   def pack(object)
     Droonga::MessagePackPacker.pack(object)
