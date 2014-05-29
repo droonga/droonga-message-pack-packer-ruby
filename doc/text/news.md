@@ -1,6 +1,6 @@
 # News
 
-## 1.0.1: 2014-05-29 (planned)
+## 1.0.1: 2014-05-29
 
  * Support packing of `Groonga::WGS84GeoPoint` and `Groonga::TokyoGeoPoint` values.
 
