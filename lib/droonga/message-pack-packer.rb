@@ -62,5 +62,9 @@ module Droonga
     def to_s
       @packer.to_s
     end
+
+    def clear
+      @packer.clear
+    end
   end
 end
