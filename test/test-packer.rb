@@ -96,4 +96,23 @@ class PackerTest < Test::Unit::TestCase
   def unpack(msgpack)
     MessagePack.unpack(msgpack)
   end
+
+  class ClearTest < self
+    def setup
+      @packer = Droonga::MessagePackPacker.new
+    end
+
+    def test_empty
+      assert_equal("", @packer.to_s)
+      @packer.clear
+      assert_equal("", @packer.to_s)
+    end
+
+    def test_have_content
+      @packer.pack("string")
+      assert_equal("string", unpack(@packer.to_s))
+      @packer.clear
+      assert_equal("", @packer.to_s)
+    end
+  end
 end
